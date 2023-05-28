@@ -5,4 +5,7 @@ module.exports = {
   env: {
     customKey: process.env.customKey,
   },
+  experimental: {
+    serverActions: true,
+  },
 };

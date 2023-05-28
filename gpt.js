@@ -33,12 +33,23 @@ export const generateAssignment = async (prompt) => {
 
 export const generateLessonPlan = async (prompt) => {
   console.log(prompt);
+
   try {
     const response = await axios.post(
-      "https://api.openai.com/v1/completions",
+      "https://api.openai.com/v1/chat/completions",
       {
-        model: "text-davinci-003",
-        prompt,
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are an AI teacher that is part of a service for helping teachers generate lesson plans and assignments for their students. You receive requests from teachers containing information about what lesson plans to generate. You respond ONLY in valid JSON code, so you must ensure that your response is formatted correctly.",
+          },
+          {
+            role: "user",
+            content: prompt,
+          },
+        ],
         max_tokens: 500,
         n: 1,
         stop: null,
@@ -54,7 +65,7 @@ export const generateLessonPlan = async (prompt) => {
 
     console.log(response);
     console.log("lesson plan generated!");
-    return JSON.parse(response.data.choices[0].text.trim());
+    return JSON.parse(response.data.choices[0].message.content.trim());
   } catch (error) {
     console.error(error);
     return null;

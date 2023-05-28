@@ -1,17 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import firestoreService from "../server/firestoreService";
+import firestoreService from "../firestoreService";
 import { generateLessonPlan } from "../gpt";
 
 function LessonPlanForm() {
-  const [title, setTitle] = useState("");
-  const [gradeLevel, setGradeLevel] = useState("");
-  const [subject, setSubject] = useState("");
-  const [sourceMaterial, setSourceMaterial] = useState("");
-  const [objectives, setObjectives] = useState("");
-  const [description, setDescription] = useState("");
-  const [procedures, setProcedures] = useState("");
+  const [title, setTitle] = useState("Lesson plan for 5th grade english");
+  const [gradeLevel, setGradeLevel] = useState("5th grade");
+  const [subject, setSubject] = useState("English");
+  const [sourceMaterial, setSourceMaterial] = useState(
+    "Amanda Gorman's poem 'The Hill We Climb'"
+  );
 
   const [submitting, setSubmitting] = useState(false);
 
@@ -19,17 +18,15 @@ function LessonPlanForm() {
     setSubmitting(true);
     event.preventDefault();
 
-    const prompt = `You are a ${subject} teacher. You are warm and witty and passionate about helping your students grow and thrive. Generate a lesson plan based on the provided subject: "${subject}", grade level: "${gradeLevel}", and source material. The source material is: "${sourceMaterial}". Respond ONLY in valid json and strip out any leading or trailing linebreaks, using the following template:
+    const prompt = `Generate a lesson plan based on the provided subject: "${subject}", grade level: "${gradeLevel}", and source material: "${sourceMaterial}". Respond ONLY in valid JSON code using the following template. 
     
     Output example: {"objectives": [ "objective 1", "objective 2", "objective 3" ],
     "description": "description",
-    "procedures": "procedures"}
+    "procedures": ["procedure 1", "procedure 2", "procedure 3", ...] }
     
     Output:`;
 
     const lessonPlanContent = await generateLessonPlan(prompt);
-
-    console.log("lesson plan description: ", lessonPlanContent.description);
 
     const lessonPlan = {
       id: Date.now().toString(), // using timestamp as an example id
@@ -65,7 +62,7 @@ function LessonPlanForm() {
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="title"
           type="text"
-          value={title}
+          value={title || "Lesson Plan for 5th Grade English"}
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
@@ -80,7 +77,7 @@ function LessonPlanForm() {
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="gradeLevel"
           type="text"
-          value={gradeLevel}
+          value={gradeLevel || "5th grade"}
           onChange={(e) => setGradeLevel(e.target.value)}
         />
       </div>
@@ -92,7 +89,7 @@ function LessonPlanForm() {
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="subject"
           type="text"
-          value={subject}
+          value={subject || "English"}
           onChange={(e) => setSubject(e.target.value)}
         />
       </div>
@@ -107,11 +104,11 @@ function LessonPlanForm() {
           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           id="sourceMaterial"
           type="text"
-          value={sourceMaterial}
+          value={sourceMaterial || "Amanda Gorman's Inauguration Poem"}
           onChange={(e) => setSourceMaterial(e.target.value)}
         />
       </div>
-      <div>
+      <div class="flex">
         <button
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="submit"
@@ -119,7 +116,6 @@ function LessonPlanForm() {
         >
           Submit
         </button>
-        {/* Show loading spinner if submitting */}
         {submitting && (
           <svg
             class="animate-spin ml-3 w-5 h-5 text-gray-700"
