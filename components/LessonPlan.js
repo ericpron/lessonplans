@@ -25,13 +25,17 @@ const LessonPlan = ({ lessonPlan }) => {
       <Header>OBJECTIVES</Header>
       <ul className="mb-4">
         {objectives.map((objective) => (
-          <li className="text-gray-600 mb-1 bg-slate-100 px-2">{objective}</li>
+          <li className="py-2 text-gray-600 mb-1 bg-slate-100 px-2">
+            {objective}
+          </li>
         ))}
       </ul>
       <Header>PROCEDURES</Header>
       <ul className="mb-4">
         {procedures.map((procedure) => (
-          <li className="text-gray-600 mb-2 bg-slate-100 px-2">{procedure}</li>
+          <li className="py-2 text-gray-600 mb-2 bg-slate-100 px-2">
+            {procedure}
+          </li>
         ))}
       </ul>
       <Header>ACTIVITIES</Header>

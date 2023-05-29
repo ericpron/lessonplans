@@ -19,7 +19,7 @@ function LessonPlanForm() {
     setSubmitting(true);
     event.preventDefault();
 
-    const prompt = `Generate a lesson plan based on the provided subject: "${subject}", grade level: "${gradeLevel}", and source material: "${sourceMaterial}". Respond ONLY in valid JSON code using the following template. 
+    const prompt = `Generate a lesson plan based on the provided title: "${title},  subject: "${subject}", grade level: "${gradeLevel}", and source material: "${sourceMaterial}". Respond ONLY in valid JSON code using the following template. 
     
     Output example: {"objectives": [ "objective 1", "objective 2", "objective 3" ],
     "description": "description",
@@ -104,7 +104,7 @@ function LessonPlanForm() {
             type="submit"
             disabled={submitting}
           >
-            Generate Lesson Plan
+            {submitting ? "Generating..." : "Generate Lesson Plan"}
           </button>
           {submitting && (
             <svg
