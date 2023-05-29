@@ -51,10 +51,10 @@ function LessonPlanForm() {
   };
 
   return (
-    <div class="w-screen p-4 space-y-8 bg-gray-600 shadow-md">
+    <div class="p-4 bg-gray-100">
       <form
         onSubmit={handleSubmit}
-        className="mb-4 p-4 bg-white shadow-md rounded-lg space-y-4"
+        className="mb-4 p-4 bg-white shadow-lg rounded-lg space-y-4"
       >
         <h1 className="text-gray-700 text-2xl font-bold mb-2">
           Generate Lesson Plans

@@ -5,7 +5,7 @@ const LessonPlanList = async () => {
   const lessonPlans = await firestoreService.getLessonPlans();
 
   return (
-    <div class="w-screen p-4 space-y-8 bg-gray-600 shadow-md">
+    <div class="w-screen p-4 space-y-8 bg-gray-100">
       <ul>
         {lessonPlans.map((lessonPlan) => (
           <LessonPlanListItem key={lessonPlan.id} lessonPlan={lessonPlan} />

@@ -9,7 +9,7 @@ const LessonPlan = ({ lessonPlan }) => {
   console.log("from LessonPlan.js:", lessonPlan.id);
 
   return (
-    <div className="mb-4 p-4 bg-white shadow-md rounded-lg">
+    <div className="mb-4 p-4 bg-white shadow-lg rounded-lg">
       <Link href={"/" + lessonPlan.id}>
         <h2 className="text-2xl text-gray-600 font-bold mb-4">
           {lessonPlan.title}
@@ -34,6 +34,12 @@ const LessonPlan = ({ lessonPlan }) => {
           <li className="text-gray-600 mb-2 bg-slate-100 px-2">{procedure}</li>
         ))}
       </ul>
+      <Header>ACTIVITIES</Header>
+      {/* <ul className="mb-4">
+        {procedures.map((procedure) => (
+          <li className="text-gray-600 mb-2 bg-slate-100 px-2">{procedure}</li>
+        ))}
+      </ul> */}
     </div>
   );
 };

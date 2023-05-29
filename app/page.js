@@ -6,7 +6,7 @@ dotenv.config();
 
 export default function Home() {
   return (
-    <div class="w-screen">
+    <div class="">
       <LessonPlanForm />
       <LessonPlanList />
       {/* <TestComponent /> */}

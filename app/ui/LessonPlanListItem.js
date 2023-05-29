@@ -7,7 +7,7 @@ const LessonPlanListItem = ({ lessonPlan }) => {
 
   return (
     <Link href={"/" + lessonPlan.id}>
-      <div className="mb-4 p-4 bg-white shadow-md rounded-lg">
+      <div className="mb-4 p-4 bg-white shadow-sm rounded-lg">
         <h2 className="text-xl text-gray-600 font-bold mb-4">
           {lessonPlan.title}
         </h2>
