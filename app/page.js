@@ -6,8 +6,7 @@ dotenv.config();
 
 export default function Home() {
   return (
-    <div>
-      <h1 className="gray-100">Add a New Lesson Plan</h1>
+    <div class="w-screen">
       <LessonPlanForm />
       <LessonPlanList />
       {/* <TestComponent /> */}

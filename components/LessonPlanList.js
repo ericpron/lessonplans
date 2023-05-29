@@ -1,14 +1,14 @@
 import firestoreService from "../firestoreService";
+import LessonPlanListItem from "./LessonPlanListItem";
 
 const LessonPlanList = async () => {
   const lessonPlans = await firestoreService.getLessonPlans();
-  console.log("lesson plans: ", lessonPlans);
 
   return (
-    <div>
+    <div class="w-screen p-4 space-y-8 bg-gray-600 shadow-md">
       <ul>
         {lessonPlans.map((lessonPlan) => (
-          <li>{lessonPlan.title}</li>
+          <LessonPlanListItem key={lessonPlan.id} lessonPlan={lessonPlan} />
         ))}
       </ul>
     </div>
