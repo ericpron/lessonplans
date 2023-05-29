@@ -3,6 +3,7 @@
 import { useState } from "react";
 import firestoreService from "../firestoreService";
 import { generateLessonPlan } from "../gpt";
+import FormInput from "@/app/ui/FormInput";
 
 function LessonPlanForm() {
   const [title, setTitle] = useState("Lesson plan for 5th grade english");
@@ -50,81 +51,60 @@ function LessonPlanForm() {
   };
 
   return (
-    <>
+    <div class="w-screen p-4 space-y-8 bg-gray-600 shadow-md">
       <form
         onSubmit={handleSubmit}
-        className="w-screen p-4 space-y-8 bg-white shadow-md"
+        className="mb-4 p-4 bg-white shadow-md rounded-lg space-y-4"
       >
         <h1 className="text-gray-700 text-2xl font-bold mb-2">
           Generate Lesson Plans
         </h1>
         <div>
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            for="title"
-          >
-            Title:
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          <FormInput
+            title="Title"
             id="title"
             type="text"
-            value={title || "Lesson Plan for 5th Grade English"}
+            value={title}
+            placeholder="e.g. Lesson plan for 5th grade english"
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div>
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            for="gradeLevel"
-          >
-            Grade level:
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          <FormInput
+            title="Grade Level"
             id="gradeLevel"
-            type="text"
-            value={gradeLevel || "5th grade"}
+            value={gradeLevel}
+            placeholder="e.g. 5th grade"
             onChange={(e) => setGradeLevel(e.target.value)}
           />
         </div>
         <div>
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            for="subject"
-          >
-            Subject:
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          <FormInput
+            title="Subject"
             id="subject"
             type="text"
-            value={subject || "English"}
+            value={subject}
+            placeholder="e.g. English or Math"
             onChange={(e) => setSubject(e.target.value)}
           />
         </div>
         <div>
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            for="sourceMaterial"
-          >
-            Source Material:
-          </label>
-          <input
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          <FormInput
+            title="Source Material"
             id="sourceMaterial"
             type="text"
-            value={sourceMaterial || "Amanda Gorman's Inauguration Poem"}
+            value={sourceMaterial}
+            placeholder="e.g. 'The Wild Robot' by Peter Brown"
             onChange={(e) => setSourceMaterial(e.target.value)}
           />
         </div>
-        <div className="flex">
+        <div className="flex align-middle">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="bg-green-500 hover:bg-green-700 w-full text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
             disabled={submitting}
           >
-            Submit
+            Generate Lesson Plan
           </button>
           {submitting && (
             <svg
@@ -150,7 +130,7 @@ function LessonPlanForm() {
           )}
         </div>
       </form>
-    </>
+    </div>
   );
 }
 
