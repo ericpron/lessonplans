@@ -1,5 +1,6 @@
 import Link from "next/link";
-import LessonPlanMetaData from "./LessonPlanMetaData";
+import LessonPlanMetaData from "../app/ui/LessonPlanMetaData";
+import Header from "@/app/ui/Header";
 
 const LessonPlan = ({ lessonPlan }) => {
   const objectives = lessonPlan.objectives ? lessonPlan.objectives : [];
@@ -19,15 +20,15 @@ const LessonPlan = ({ lessonPlan }) => {
         subject={lessonPlan.subject}
         material={lessonPlan.sourceMaterial}
       />
-      <h3 className="text-gray-400 mt-4 mb-1">Description:</h3>
+      <Header>DESCRIPTION</Header>
       <p className="text-gray-600 mb-2">{lessonPlan.description}</p>
-      <h3 className="text-gray-400 mb-1">Objectives</h3>
+      <Header>OBJECTIVES</Header>
       <ul className="mb-4">
         {objectives.map((objective) => (
           <li className="text-gray-600 mb-1 bg-slate-100 px-2">{objective}</li>
         ))}
       </ul>
-      <h3 className="text-gray-400 mb-2">Procedures</h3>
+      <Header>PROCEDURES</Header>
       <ul className="mb-4">
         {procedures.map((procedure) => (
           <li className="text-gray-600 mb-2 bg-slate-100 px-2">{procedure}</li>

@@ -4,7 +4,7 @@
 import LessonPlan from "@/components/LessonPlan";
 import firestoreService from "@/firestoreService";
 
-const Page = async ({ params }) => {
+const Page = async ({ params } = {}) => {
   const lessonPlan = await firestoreService.getLessonPlanById(params.id);
   console.log(lessonPlan);
 

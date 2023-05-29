@@ -1,5 +1,6 @@
 import Link from "next/link";
 import LessonPlanMetaData from "./LessonPlanMetaData";
+import Header from "./Header";
 
 const LessonPlanListItem = ({ lessonPlan }) => {
   console.log("from LessonPlan.js:", lessonPlan.id);
@@ -16,7 +17,7 @@ const LessonPlanListItem = ({ lessonPlan }) => {
         subject={lessonPlan.subject}
         material={lessonPlan.sourceMaterial}
       />
-      <h3 className="text-gray-400 mt-4 mb-1">Description:</h3>
+      <Header>DESCRIPTION</Header>
       <p className="text-gray-600 mb-1">{lessonPlan.description}</p>
     </div>
   );

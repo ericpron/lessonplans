@@ -1,5 +1,5 @@
 import firestoreService from "../firestoreService";
-import LessonPlanListItem from "./LessonPlanListItem";
+import LessonPlanListItem from "../app/ui/LessonPlanListItem";
 
 const LessonPlanList = async () => {
   const lessonPlans = await firestoreService.getLessonPlans();
