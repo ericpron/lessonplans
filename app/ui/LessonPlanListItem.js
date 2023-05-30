@@ -1,6 +1,7 @@
 import Link from "next/link";
 import LessonPlanMetaData from "./LessonPlanMetaData";
 import Header from "./Header";
+import dateParser from "../utils/DateParser";
 
 const LessonPlanListItem = ({ lessonPlan }) => {
   console.log("from LessonPlan.js:", lessonPlan.id);
@@ -11,6 +12,7 @@ const LessonPlanListItem = ({ lessonPlan }) => {
         <h2 className="text-xl text-gray-600 font-bold mb-4">
           {lessonPlan.title}
         </h2>
+        <p className="text-gray-300 mb-2">{dateParser(lessonPlan.id)}</p>
         <LessonPlanMetaData
           gradeLevel={lessonPlan.gradeLevel}
           subject={lessonPlan.subject}

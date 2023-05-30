@@ -12,6 +12,7 @@ function LessonPlanForm() {
   const [sourceMaterial, setSourceMaterial] = useState(
     "Amanda Gorman's poem 'The Hill We Climb'"
   );
+  const [purpose, setPurpose] = useState("");
 
   const [submitting, setSubmitting] = useState(false);
 
@@ -19,15 +20,18 @@ function LessonPlanForm() {
     setSubmitting(true);
     event.preventDefault();
 
-    const prompt = `Generate a lesson plan based on the provided title: "${title},  subject: "${subject}", grade level: "${gradeLevel}", and source material: "${sourceMaterial}". Respond ONLY in valid JSON code using the following template. 
+    const prompt = `Generate a lesson plan based on the provided title: "${title},  subject: "${subject}", grade level: "${gradeLevel}", source material: "${sourceMaterial}", and core theme/skill to be learned: "${purpose}". Respond ONLY in valid JSON code using the following template. 
     
-    Output example: {"objectives": [ "objective 1", "objective 2", "objective 3" ],
+    Output example: {"objectives": [ "objective 1", "objective 2", "objective 3", ... ],
     "description": "description",
+    "common_core_standards": [ "standard 1", "standard 2", "objective 3", ... ],
     "procedures": ["procedure 1", "procedure 2", "procedure 3", ...] }
     
     Output:`;
 
     const lessonPlanContent = await generateLessonPlan(prompt);
+
+    // need to include / figure out how to handle COMMON CORE STANDARDS ETC.
 
     const lessonPlan = {
       id: Date.now().toString(), // using timestamp as an example id
@@ -35,6 +39,8 @@ function LessonPlanForm() {
       gradeLevel: gradeLevel,
       subject: subject,
       sourceMaterial: sourceMaterial,
+      purpose: purpose,
+      standards: lessonPlanContent.common_core_standards,
       objectives: lessonPlanContent.objectives,
       description: lessonPlanContent.description,
       procedures: lessonPlanContent.procedures,
@@ -47,6 +53,7 @@ function LessonPlanForm() {
     setTitle("");
     setGradeLevel("");
     setSubject("");
+    setPurpose("");
     setSourceMaterial("");
   };
 
@@ -98,9 +105,19 @@ function LessonPlanForm() {
             onChange={(e) => setSourceMaterial(e.target.value)}
           />
         </div>
+        <div>
+          <FormInput
+            title="Core Theme/Skill"
+            id="purpose"
+            type="text"
+            value={purpose}
+            placeholder="e.g. Appreciate the value of hard work"
+            onChange={(e) => setPurpose(e.target.value)}
+          />
+        </div>
         <div className="flex align-middle">
           <button
-            className="bg-green-500 hover:bg-green-700 w-full text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="gradient-border bg-slate-500 hover:bg-slate-700 border-slate-900 w-full text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
             disabled={submitting}
           >

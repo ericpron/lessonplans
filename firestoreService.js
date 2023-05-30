@@ -15,7 +15,7 @@ const firestoreService = {
       const db = getFirestore();
       const lessonPlansCollection = collection(db, "lessonPlans");
       const snapshot = await getDocs(lessonPlansCollection);
-      return snapshot.docs.map((doc) => doc.data());
+      return snapshot.docs.map((doc) => doc.data()).reverse();
     } catch (error) {
       console.error("Error fetching plans: ", error);
     }

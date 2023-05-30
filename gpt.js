@@ -2,15 +2,22 @@ import axios from "axios";
 
 const API_KEY = process.env.customKey;
 
-export const generateAssignment = async (prompt) => {
+export const generateActivities = async (prompt) => {
   console.log(prompt);
   try {
     const response = await axios.post(
       "https://api.openai.com/v1/chat/completions",
       {
         model: "gpt-4",
-        messages: [{ role: "user", content: prompt }],
-        max_tokens: 500, // Adjust as needed
+        messages: [
+          {
+            role: "system",
+            content:
+              "You are an AI teacher that is part of a service for helping teachers generate lesson plans and assignments for their students. You receive detailed lesson plans which you use as the basis to generate relevant class and homework activities. You will provide different versions of the activities using the difficulty levels and any other information specified in the user prompt. You respond ONLY in valid JSON code, so you must ensure that your response is formatted correctly.",
+          },
+          { role: "user", content: prompt },
+        ],
+        max_tokens: 1500, // Adjust as needed
         n: 1,
         stop: null,
         temperature: 0.7,
@@ -50,10 +57,10 @@ export const generateLessonPlan = async (prompt) => {
             content: prompt,
           },
         ],
-        max_tokens: 500,
+        max_tokens: 1000,
         n: 1,
         stop: null,
-        temperature: 0.9,
+        temperature: 0.7,
       },
       {
         headers: {

@@ -6,7 +6,7 @@ const FocusableDiv = ({ children }) => {
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
-  const focusClass = isFocused ? " border-slate-400" : " border";
+  const focusClass = isFocused ? " border-purple-400" : " border";
 
   return (
     <div
