@@ -58,10 +58,10 @@ function LessonPlanForm() {
   };
 
   return (
-    <div class="p-4 bg-gray-100">
+    <div class="p-4 themed-background">
       <form
         onSubmit={handleSubmit}
-        className="mb-4 p-4 bg-white shadow-lg rounded-lg space-y-4"
+        className="mb-4 bg-white p-4 shadow-lg rounded-lg space-y-4"
       >
         <h1 className="text-gray-700 text-2xl font-bold mb-2">
           Generate Lesson Plans
